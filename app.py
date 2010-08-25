@@ -38,6 +38,14 @@ class Page(db.Model):
   def formatted_date(self):
     return self.date.strftime('%d %b %Y %H:%M:%S')
 
+class NavLink(db.Model):
+  url = db.StringProperty(required=True)
+  text = db.StringProperty(required=True)
+  attribs = db.StringProperty()
+  order = db.IntegerProperty()
+  def as_tag(self):
+    return '<a href="%s" %s>%s</a>' % (self.url, self.attribs, self.text)
+
 class PageRenderer(webapp.RequestHandler):
   def get(self, url):
     try:
@@ -222,6 +230,107 @@ class RoleAssignmentEditor(EditRequestHandler):
     role_assignment.delete()
     self.redirect('/edit/roles/list')
 
+class NavLinkEditor(EditRequestHandler):
+  def get(self, action):
+    try:
+      if not self.require_login():
+        return
+      if not self.require_role('Manager'):
+        return
+      actions = {'list': self.show_list,
+                 'add': self.show_add_form,
+                 'modify': self.show_modify_form,
+                 }
+      if action in actions:
+        actions[action]()
+      else:
+        logging.warn('Unrecognized request action: %s' % action)
+        self.not_found()
+    except:
+      self.fail()
+
+  def post(self, action):
+    try:
+      if not self.require_login():
+        return
+      if action == 'add':
+        self.apply_add_form()
+      elif action == 'modify':
+        self.apply_modify_form()
+      elif action == 'delete':
+        self.apply_delete_form()
+      else:
+        logging.warn('Unrecognized request action: %s' % action)
+        self.not_found()
+    except:
+      self.fail()
+      
+  def show_list(self):
+    list = db.GqlQuery("SELECT * FROM NavLink ORDER BY order ASC")
+    for item in list:
+      item.id = item.key().id()
+    payload = {'list': list}
+    self.respond('navlink_list.html', payload)
+
+  def show_add_form(self):
+    self.respond('navlink_add.html', {})
+
+  def apply_add_form(self):
+    url = self.request.get('url')
+    text = self.request.get('text')
+    attribs = self.request.get('attribs')
+    try:
+      order = int(self.request.get('order'))
+    except:
+      logging.warning('Unable to parse navlink order', order)
+      order = 0
+    navlink = NavLink(url=url, text=text, attribs=attribs, order=order)
+    key = navlink.put()
+    self.redirect('/edit/navlinks/list')
+
+  def show_modify_form(self):
+    key = self.request.get('key')
+    if not key:
+      logging.error('No key for modify form')
+      return self.not_found()
+    navlink = NavLink.get(key)
+    if not navlink:
+      logging.error('NavLink not found for modify form, key=%s', key)
+      return self.not_found()
+    self.respond('navlink_modify.html', { 'navlink': navlink, })
+
+  def apply_modify_form(self):
+    key = self.request.get('key')
+    if not key:
+      return self.not_found()
+    navlink = NavLink.get(key)
+    if not navlink:
+      return self.not_found()
+    url = self.request.get('url')
+    text = self.request.get('text')
+    attribs = self.request.get('attribs')
+    try:
+      order = int(self.request.get('order'))
+    except:
+      logging.warning('Unable to parse navlink order', order)
+      order = 0
+    navlink.url = url
+    navlink.text = text
+    navlink.attribs = attribs
+    navlink.order = order
+    navlink.put()
+    self.redirect('/edit/navlinks/list')
+
+  def apply_delete_form(self):
+    key = self.request.get('key')
+    if not key:
+      return self.not_found()
+    navlink = NavLink.get(key)
+    if not navlink:
+      return self.not_found()
+    navlink.delete()
+    self.redirect('/edit/navlink/list')
+
 class PageEditor(EditRequestHandler):
   def get(self, action):
     try:
@@ -345,6 +454,7 @@ class EditorConsole(EditRequestHandler):
 application = webapp.WSGIApplication([
                 ('/edit/roles/(.*)', RoleAssignmentEditor),
                 ('/edit/pages/(.*)', PageEditor),
+                ('/edit/navlinks/(.*)', NavLinkEditor),
                 ('/edit/?', EditorConsole),
                 ('(/.*)', PageRenderer),
               ])

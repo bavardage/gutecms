@@ -1,0 +1,19 @@
+{% extends 'authenticated.html' %}
+
+{% block title %}Modify Navigation Link{% endblock %}
+
+{% block content %}
+  <h1>Edit Navigation Link</h1>
+  <form action="/edit/navlinks/delete" method="post">
+    <input type="hidden" name="key" value="{{ role_assignment.key }}"/>
+    <div><input type="submit" value="Delete"></div>
+  </form>
+  <form action="/edit/navlinks/modify" method="post">
+    <input type="hidden" name="key" value="{{ navlink.key }}"/>
+    <div>URL<br/><input name="url" value="{{ navlink.url }}"/></div>
+    <div>Text<br/><input name="text" value="{{ navlink.text }}"//></div>
+    <div>Attribs<br/><input name="attribs" value="{{ navlink.attribs }}"//></div>
+    <div>Order<br/><input name="order" value="{{ navlink.order }}"//></div>
+    <div><input type="submit" value="Save"></div>
+  </form>
+{% endblock %}

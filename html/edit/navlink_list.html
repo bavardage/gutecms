@@ -1,0 +1,22 @@
+{% extends 'authenticated.html' %}
+
+{% block title %}Navigation Link List{% endblock %}
+
+{% block content %}
+  <h2>Navigation Links</h2>
+  <p>[ <a href="/edit/navlinks/add">Add</a> ]</p>
+  <table class="roles" border="0" cellspacing="0" cellpadding="5">
+  <thead>
+    <tr><th>Link</th><th>Edit</th><th>Order</th></tr>
+  </thead>
+  <tbody>
+  {% for item in list %}
+    <tr>
+      <td>{{ item.text }}</td>
+      <td><a href="/edit/navlinks/modify?key={{ item.key }}">{{ item.text }}</a></td>
+      <td>{{ item.order }}</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+  </table>
+{% endblock %}

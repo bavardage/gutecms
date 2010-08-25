@@ -1,0 +1,14 @@
+{% extends 'authenticated.html' %}
+
+{% block title %}Add Navigation List{% endblock %}
+
+{% block content %}
+  <h1>Add Navigation Link</h1>
+  <form action="/edit/navlinks/add" method="post">
+    <div>URL<br/><input name="url"/></div>
+    <div>Text<br/><input name="text"/></div>
+    <div>Attribs<br/><input name="attribs"/></div>
+    <div>Order<br/><input name="order"/></div>
+    <div><input type="submit" value="Save"></div>
+  </form>
+{% endblock %}
