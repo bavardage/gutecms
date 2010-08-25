@@ -1,22 +1,51 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!DOCTYPE html> 
+<html dir="ltr" lang="en"> 
+  <head>
+    <title>{{ page.title }}</title>
+    <link rel="shortcut icon" href="/style/default/favicon.ico" type="image/x-icon"/>
 
-<html>
-<head>
-<title>{{ page.title }}</title>
-<link rel="shortcut icon" href="/style/default/favicon.ico" type="image/x-icon"/>
-<link href="/style/default/main.css" rel="stylesheet" type="text/css"/>
-</head>
-<body>
-<div id="page">
+    <link rel="stylesheet" href="/style/default/blueprint/screen.css" 
+	  type="text/css" media="screen, projection" /> 
+    <link rel="stylesheet" href="/style/default/blueprint/print.css"
+	  type="text/css" media="print" />
+    <!--[if lt IE 8]><link rel="stylesheet" href="/style/default/blueprint/ie.css" type="text/css" media="screen, projection"><![endif]-->
+    <link rel="stylesheet" href="/style/default/blueprint/plugins/fancy-type/screen.css" type="text/css" media="screen, projection" />
 
-<div id="header">
-<span id="title"><a href="/">GuteCMS</a></span>
-</div>
+    <link rel="stylesheet" href="/style/default/style.css">
+  </head>
+  <body>
+    <div id="content">
+      <header>
+	<nav>
+	  <ul>
+	    {% for link in navlinks %}
+	    <li> <a href="{{ link.url }}" {% ifequal link.url path %}rel="tag"{% endifequal %} title="{{ link.desc }}">
+		{{ link.title }}</a></li>
+	    {% endfor %}
+	    <li><a href="">link</a></li><li><a href="#">link</a></li>
+	  </ul>
+	</nav>
+	<div class="alt">
+	  The Oxford University Maths Society
+	</div>
+	<h1>
+	  <a href="/"><img src="/images/invariants.png" alt="Invariants Logo" /></a>
+	</h1>
+      </header>
 
-<div class="content">
-{{ page.content }}
-</div>
-
-</div>
-</body>
+      <div class="container">
+	<div id="main" class="prepend-1 span-16 colborder">
+	  {{ page.content }}
+	</div>
+	<div id="sidebar" class="span-6 last">
+	  <div class="box">
+	    item
+	  </div>
+	  <div class="box">
+	    item
+	  </div>
+	</div>
+      </div>
+    </div>
+  </body>
 </html>

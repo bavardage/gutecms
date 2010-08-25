@@ -1,0 +1,139 @@
+
+/* Colours
+ * #3f8ed8; link basic blue colour
+ * #14518c; darker blue colour
+ * 
+ */
+
+/* fonts */
+@import url(http://fonts.googleapis.com/css?family=Crimson+Text);
+@import url(http://fonts.googleapis.com/css?family=Droid+Sans);
+@import url(http://fonts.googleapis.com/css?family=Droid+Serif);
+
+/* setup */
+ 
+
+h1,h2,h3,h4,h5 { font-weight: normal; font-family: "Droid Sans";}
+
+a { color: #3f8ed8; text-decoration: none;      }
+a:hover { color: black; text-decoration: underline; }
+ 
+.hide  { display: none; }
+.clear { clear: both;   }
+
+/* Undo fancy type for p+p */
+p + p {
+    text-indent: 0;
+    margin-top: 0;
+}
+
+/* main page things */
+html {
+    font-family: 'Droid Serif';
+}
+
+body {
+    /*background: url('images/blackboard_seamless.jpg');*/
+}
+
+#content {
+    
+}
+
+/* header */
+#content>header {
+    display: block;
+    margin-bottom: 32px;
+}
+#content>header div.alt {
+    float: right;
+    padding: 1em;
+}
+#content>header h1 {
+    border-bottom: 1px solid #ddd;
+    background-color: rgba(255,255,255,0.9);
+}
+#content>header h1 a { 
+    color: #404040;
+}
+/*fancy header*/
+#content>header h1.home {
+    background-color: #aa0000;
+}
+#content>header h1.termcard {
+    background-color: #aaaa00;
+}
+#content>header h1.committee {
+    background-color: #aaaaaa;
+}
+/*end fancy header*/
+#content>header h1 a:hover { 
+    color: #000; 
+    text-decoration: none;
+}
+#content>header h1 img {
+    height: 100px;
+}
+#content>header nav ul { 
+    font-family: "Droid Sans";
+    float: left;
+    background: url('./images/blackboard_slice.jpg') fixed;
+/*    background-color: #000;*/
+    list-style-type: none;
+    width: 100%;
+    padding: 0; margin: 0;
+}
+#content>header nav li { float: left; }
+#content>header nav li a { 
+    float: left;
+    padding: 8px;
+    padding-top: 11px;
+    margin: 0 8px;
+    font-size: 15px;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #999;
+}
+#content>header nav li a:hover { 
+    text-decoration: none;
+/*    background-color: #920;*/
+    background-color: #3f8ed8;
+    color:#fff;
+}
+#content>header nav li a[rel=tag]:hover,
+#content>header nav li a[rel=tag] { 
+    background-color: #14518c;
+    color: #fff;
+}
+
+
+#main {
+    background-color: white;
+    font-family: "Droid Serif";
+}
+
+#article>h2 {
+    border-bottom: 1px dotted #ddd;
+}
+p.tags {
+    font-family: "Droid Sans", sans;
+    text-align: right;
+    text-transform: uppercase;
+    color: #999;
+}
+
+
+footer {
+    font-family: "Droid Sans";
+    background: url('./imgs/blackboard_slice.jpg') fixed;
+    margin: 0;
+    padding: 8px;
+    margin: 0 8px;
+    font-size: 12px;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #999;
+    text-align: right;
+}

@@ -7,6 +7,12 @@ handlers:
 - url: /style
   static_dir: style
 
+- url: /script
+  static_dir: script
+
+- url: /images
+  static_dir: images
+
 - url: /favicon.ico
   static_files: style/default/favicon.ico
   upload: style/default/favicon.ico
