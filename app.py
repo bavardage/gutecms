@@ -46,22 +46,28 @@ class NavLink(db.Model):
   def as_tag(self):
     return '<a href="%s" %s>%s</a>' % (self.url, self.attribs, self.text)
 
+def make_payload(payload):
+  payload['user'] = users.get_current_user()
+  payload['navlinks'] = NavLink.all().order('order')
+  return payload
+
 class PageRenderer(webapp.RequestHandler):
   def get(self, url):
     try:
       page = Page.all().filter('url', url).get()
       if page:
         path = os.path.join(os.path.dirname(__file__), 'html', 'render.html')
-        self.response.out.write(template.render(path, { 'page': page, }))
+        self.response.out.write(template.render(path, 
+                                                make_payload({ 'page': page, })))
       else:
         self.error(404)
         path = os.path.join(os.path.dirname(__file__), 'html', '404.html')
-        self.response.out.write(template.render(path, { }))
+        self.response.out.write(template.render(path, make_payload({})))
     except:
       logging.error(traceback.format_exc())
       self.error(500)
       path = os.path.join(os.path.dirname(__file__), 'html', '500.html')
-      self.response.out.write(template.render(path, { }))
+      self.response.out.write(template.render(path, make_payload({})))
 
 class EditRequestHandler(webapp.RequestHandler):
   roles = None

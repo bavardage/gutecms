@@ -18,11 +18,12 @@
       <header>
 	<nav>
 	  <ul>
-	    {% for link in navlinks %}
-	    <li> <a href="{{ link.url }}" {% ifequal link.url path %}rel="tag"{% endifequal %} title="{{ link.desc }}">
-		{{ link.title }}</a></li>
+	    {% for link in navlinks %} 
+	    <li>
+	      <a href="{{ link.url }}"
+		 {{% ifequal link.url path %}rel="tag"{% endifequal %}
+		 {{attribs}}>{{ link.text }}</a>
 	    {% endfor %}
-	    <li><a href="">link</a></li><li><a href="#">link</a></li>
 	  </ul>
 	</nav>
 	<div class="alt">
@@ -38,14 +39,19 @@
 	  {{ page.content }}
 	</div>
 	<div id="sidebar" class="span-6 last">
-	  <div class="box">
-	    item
-	  </div>
-	  <div class="box">
-	    item
-	  </div>
+	  {% include "sidebar.html" %}
 	</div>
       </div>
+
+      <footer>
+	Invariants 2010 
+	<a rel="license" 
+	   href="http://creativecommons.org/licenses/by-nc-sa/3.0/">
+	  <img alt="Creative Commons License"
+	       style="border-width:0; vertical-align: middle;" 
+	       src="http://i.creativecommons.org/l/by-nc-sa/3.0/80x15.png" />
+	</a>
+      </footer>
     </div>
   </body>
 </html>
