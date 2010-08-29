@@ -1,0 +1,10 @@
+{% extends 'render.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+{% for entry in entries %}
+{% include 'blog_entry_exerpt.html' %}
+{% if not forloop.last %}<hr/>{% endif %}
+{% endfor %}
+{% endblock %}

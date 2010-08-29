@@ -1,0 +1,16 @@
+{% extends 'authenticated.html' %}
+
+{% block title %}Modify Blog Entry{% endblock %}
+
+{% block content %}
+  <h1>Edit Blog Entry</h1>
+  <form action="/edit/blog/delete" method="post">
+    <input type="hidden" name="key" value="{{ entry.key }}" />
+    <div><input type="submit" value="Delete"></div>
+  </form>
+  <form action="/edit/blog/modify" method="post">
+    <input type="hidden" name="key" value="{{ entry.key }}"/>
+    {{ form }}
+    <div><input type="submit" value="Modify" /></div>
+  </form>
+{% endblock %}

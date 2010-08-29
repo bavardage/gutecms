@@ -1,7 +1,7 @@
 <!DOCTYPE html> 
 <html dir="ltr" lang="en"> 
   <head>
-    <title>{{ page.title }}</title>
+    <title>Oxford Invariants - {% block title %}{% endblock %}</title>
     <link rel="shortcut icon" href="/style/default/favicon.ico" type="image/x-icon"/>
 
     <link rel="stylesheet" href="/style/default/blueprint/screen.css" 
@@ -36,7 +36,7 @@
 
       <div class="container">
 	<div id="main" class="prepend-1 span-16 colborder">
-	  {{ page.content }}
+	  {% block content %}{% endblock %}
 	</div>
 	<div id="sidebar" class="span-6 last">
 	  {% include "sidebar.html" %}

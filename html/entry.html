@@ -1,0 +1,17 @@
+
+{% extends 'render.html' %}
+{% block title %}{{ entry.title }}{% endblock %}
+
+{% block content %}
+<div id="article" class="post">
+  <h2 class="span-10">{{entry.title}}</h2>
+  <div class="span-6 prepend-top last">
+    <span class="date">posted {{ entry.published|naturaltime }}</span>
+  </div>
+  <div id="blogbody" class="entry clear">
+    {{ article.body }}
+  </div>
+</div>
+{{ entry.body }}
+
+{% endblock %}

@@ -24,50 +24,15 @@ from google.appengine.ext import db
 from google.appengine.ext import webapp
 from google.appengine.ext.webapp import template
 from google.appengine.ext.webapp.util import run_wsgi_app
+from google.appengine.ext.db import djangoforms
 
-class RoleAssignment(db.Model):
-  user = db.UserProperty(required=True)
-  role = db.StringProperty(required=True)
 
-class Page(db.Model):
-  url = db.StringProperty(required=True)
-  title = db.StringProperty()
-  content = db.TextProperty()
-  date = db.DateTimeProperty(auto_now_add=True)
-  author = db.UserProperty()
-  def formatted_date(self):
-    return self.date.strftime('%d %b %Y %H:%M:%S')
+from models import *
+from utils import EditRequestHandler
+from blog import *
 
-class NavLink(db.Model):
-  url = db.StringProperty(required=True)
-  text = db.StringProperty(required=True)
-  attribs = db.StringProperty()
-  order = db.IntegerProperty()
-  def as_tag(self):
-    return '<a href="%s" %s>%s</a>' % (self.url, self.attribs, self.text)
-
-def make_payload(payload):
-  payload['user'] = users.get_current_user()
-  payload['navlinks'] = NavLink.all().order('order')
-  return payload
-
-class PageRenderer(webapp.RequestHandler):
-  def get(self, url):
-    try:
-      page = Page.all().filter('url', url).get()
-      if page:
-        path = os.path.join(os.path.dirname(__file__), 'html', 'render.html')
-        self.response.out.write(template.render(path, 
-                                                make_payload({ 'page': page, })))
-      else:
-        self.error(404)
-        path = os.path.join(os.path.dirname(__file__), 'html', '404.html')
-        self.response.out.write(template.render(path, make_payload({})))
-    except:
-      logging.error(traceback.format_exc())
-      self.error(500)
-      path = os.path.join(os.path.dirname(__file__), 'html', '500.html')
-      self.response.out.write(template.render(path, make_payload({})))
+#from humanize import *
+webapp.template.register_template_library('humanize')
 
 class EditRequestHandler(webapp.RequestHandler):
   roles = None
@@ -461,8 +426,10 @@ application = webapp.WSGIApplication([
                 ('/edit/roles/(.*)', RoleAssignmentEditor),
                 ('/edit/pages/(.*)', PageEditor),
                 ('/edit/navlinks/(.*)', NavLinkEditor),
+                ('/edit/blog/(.*)', BlogEditor),
                 ('/edit/?', EditorConsole),
-                ('(/.*)', PageRenderer),
+                ('/', BlogFrontRenderer),
+                ('/(.*)', BlogEntryRenderer),
               ])
 def main():
   run_wsgi_app(application)

@@ -1,0 +1,22 @@
+{% extends 'authenticated.html' %}
+
+{% block title %}Entries List{% endblock %}
+
+{% block content %}
+  <h2>Entries</h2>
+  <p>[ <a href="/edit/blog/add">Add</a> ]</p>
+  <table class="roles" border="0" cellspacing="0" cellpadding="5">
+  <thead>
+    <tr><th>Edit</th><th>Published</th><th>slug</th></tr>
+  </thead>
+  <tbody>
+  {% for item in list %}
+  <tr>
+    <td><a href="/edit/blog/modify?key={{ item.key }}">{{ item.title }}</a></td>
+    <td>{{ item.published }}</td>
+    <td>{{ item.slug }}</td>
+  </tr>
+  {% endfor %}
+  </tbody>
+  </table>
+{% endblock %}
