@@ -1,0 +1,16 @@
+{% extends 'authenticated.html' %}
+
+{% block title %}Modify Termcard Entry{% endblock %}
+
+{% block content %}
+  <h1>Edit Termcard Entry</h1>
+  <form action="/edit/termcard/{{ tc }}/delete" method="post">
+    <input type="hidden" name="key" value="{{ entry.key }}" />
+    <div><input type="submit" value="Delete"></div>
+  </form>
+  <form action="/edit/termcard/{{ tc }}/modify" method="post">
+    <input type="hidden" name="key" value="{{ entry.key }}"/>
+    {{ form.as_ul }}
+    <div><input type="submit" value="Modify" /></div>
+  </form>
+{% endblock %}

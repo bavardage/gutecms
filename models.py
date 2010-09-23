@@ -31,11 +31,14 @@ class Page(db.Model):
 
 
 class Termcard(db.Model):
-    term = db.TextProperty(choices=["Michaelmas", "Hilary", "Trinity"], required=True)
+    term = db.StringProperty(choices=["Michaelmas", "Hilary", "Trinity"], required=True)
     year = db.IntegerProperty(required=True)
 
+    def __unicode__(self):
+        return "%s %s" % (self.term, self.year)
+
 class TermcardEntry(db.Model):
-    termcard = db.Key()
+    termcard = db.ReferenceProperty(Termcard)
     order = db.IntegerProperty()
     date = db.StringProperty()
     speaker = db.StringProperty()

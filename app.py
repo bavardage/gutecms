@@ -30,6 +30,7 @@ from google.appengine.ext.db import djangoforms
 from models import *
 from utils import EditRequestHandler
 from blog import *
+from termcard import *
 
 #from humanize import *
 webapp.template.register_template_library('humanize')
@@ -427,7 +428,11 @@ application = webapp.WSGIApplication([
                 ('/edit/pages/(.*)', PageEditor),
                 ('/edit/navlinks/(.*)', NavLinkEditor),
                 ('/edit/blog/(.*)', BlogEditor),
+                ('/edit/termcard/(.*)/(.*)', TermcardEntryEditor),
+                ('/edit/termcard/(.*)', TermcardEditor),
                 ('/edit/?', EditorConsole),
+                ('/termcard/(.*)/(.*)', TermcardRenderer),
+                ('/termcard/', TermcardRenderer),
                 ('/', BlogFrontRenderer),
                 ('/(.*)', BlogEntryRenderer),
               ])

@@ -1,0 +1,24 @@
+{% extends 'authenticated.html' %}
+
+{% block title %}Entries List{% endblock %}
+
+{% block content %}
+  <h2>Termcards</h2>
+  <p>[ <a href="/edit/termcard/add">Add</a> ]</p>
+
+  <h3>Edit</h3>
+  <ul>
+    {% for item in list %}
+    <li>
+      <a href="/edit/termcard/modify?key={{ item.key }}">
+	{{ item.term }} - {{ item.year }}
+      </a>
+      <a href="/edit/termcard/{{ item.key }}/list">Entries</a>
+      <a href="/edit/termcard/delete?key={{ item.key }}">
+	Delete
+      </a>
+    </li>
+    {% endfor %}
+  </ul>
+
+{% endblock %}

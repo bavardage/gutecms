@@ -1,0 +1,12 @@
+{% extends 'authenticated.html' %}
+
+{% block title %}Add Blog Entry{% endblock %}
+
+{% block content %}
+  <h1>Add Termcard</h1>
+  <form method="post" action="/edit/termcard/add">
+    {{ form.as_ul }}
+    <input type="submit">
+  </form>
+{% endblock %}
+  

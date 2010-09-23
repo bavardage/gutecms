@@ -1,0 +1,17 @@
+{% extends 'render.html' %}
+{% block title %} Termcard - {{ tc.term }} {{ tc.year }}{% endblock %}
+
+{% block content %}
+
+<h1>Termcard for {{ tc.term }} {{ tc.year }}</h1>
+
+{% for entry in entries %}
+<div class="termcarditem">
+  <h3> {{entry.date }} - {{ entry.title }}</h3>
+  <h4 class="right">{{ entry.speaker }} </h4>
+  <blockquote>
+    {{entry.abstract }}
+  </blockquote>
+</div>
+{% endfor %}
+{% endblock %}
