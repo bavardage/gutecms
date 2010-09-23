@@ -29,3 +29,16 @@ class Page(db.Model):
   def formatted_date(self):
     return self.date.strftime('%d %b %Y %H:%M:%S')
 
+
+class Termcard(db.Model):
+    term = db.TextProperty(choices=["Michaelmas", "Hilary", "Trinity"], required=True)
+    year = db.IntegerProperty(required=True)
+
+class TermcardEntry(db.Model):
+    termcard = db.Key()
+    order = db.IntegerProperty()
+    date = db.StringProperty()
+    speaker = db.StringProperty()
+    title = db.StringProperty()
+    abstract = db.TextProperty()
+
