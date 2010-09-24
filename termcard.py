@@ -1,4 +1,4 @@
-import logging, os
+import logging, os, traceback
 
 from google.appengine.api import users
 from google.appengine.ext import webapp
@@ -120,6 +120,7 @@ class TermcardEntryEditor(EditRequestHandler):
             for item in tces:
                 item.id = item.key().id()
         except:
+            logging.error(traceback.format_exc())
             tces = []
         self.respond('termcard_entry_list.html', {'list': tces, 'tc': tc})
 
@@ -185,7 +186,7 @@ class TermcardRenderer(webapp.RequestHandler):
             self.show_default_termcard()
 
     def show_termcard(self, termcard):
-        entries = TermcardEntry.all().filter('termcard =', termcard)
+        entries = TermcardEntry.all().filter('termcard =', termcard).order('order')
         self.response.out.write(
             template.render(
                 os.path.join(os.path.dirname(__file__), 'html', 'termcard.html'),
