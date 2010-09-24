@@ -1,0 +1,16 @@
+
+* Add images
+  
+* Finalise all text
+** Add in information about joining
+
+* Mailing List
+** Figure out how to do this
+** Links!
+
+* Styling - tweaks
+** Spacing below blog entries
+** Spacing to left of header image
+** Top links highlight colour
+** Add class=info styles to some bits of text?!
+** Fancy header image hover thingyies
