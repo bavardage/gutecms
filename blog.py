@@ -110,7 +110,7 @@ class BlogFrontRenderer(webapp.RequestHandler):
                                 'html', 'blog_front.html')
             self.response.out.write(
                 template.render(path,
-                                make_payload({'entries': entries})))
+                                make_payload({'entries': entries, 'path': '/'})))
         except:
             logging.error(traceback.format_exc())
             self.error(500)
@@ -128,4 +128,4 @@ trying to find page with this url" % slug)
         else:
             path = os.path.join(os.path.dirname(__file__), 'html', 'entry.html')
             self.response.out.write(template.render(path, 
-                                                    make_payload({'entry': entry})))
+                                                    make_payload({'entry': entry, 'path': '/%s' % slug})))

@@ -12,7 +12,7 @@ class PageRenderer(webapp.RequestHandler):
       if page:
         path = os.path.join(os.path.dirname(__file__), 'html', 'page.html')
         self.response.out.write(template.render(path, 
-                                                make_payload({ 'page': page, })))
+                                                make_payload({ 'page': page, 'path': '/%s' % url })))
       else:
         self.error(404)
         path = os.path.join(os.path.dirname(__file__), 'html', '404.html')
