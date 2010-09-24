@@ -73,6 +73,7 @@ body {
 }
 #content>header h1 img {
     height: 100px;
+    margin-left: 5px;
 }
 #content>header nav ul { 
     font-family: "Droid Sans";
@@ -88,7 +89,7 @@ body {
     float: left;
     padding: 8px;
     padding-top: 11px;
-    margin: 0 8px;
+    margin: 0;
     font-size: 15px;
     text-decoration: none;
     text-transform: uppercase;
@@ -104,6 +105,7 @@ body {
 #content>header nav li a[rel=tag]:hover,
 #content>header nav li a[rel=tag] { 
     background-color: #14518c;
+    background-color: rgba(20,81,140,0.6);
     color: #fff;
 }
 
@@ -111,6 +113,10 @@ body {
 #main {
     background-color: white;
     font-family: "Droid Serif";
+}
+
+div.post {
+    margin-bottom: 17px;
 }
 
 #article>h2 {
