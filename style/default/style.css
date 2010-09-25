@@ -122,12 +122,26 @@ div.post {
 #article>h2 {
     border-bottom: 1px dotted #ddd;
 }
+
 p.tags {
     font-family: "Droid Sans", sans;
     text-align: right;
     text-transform: uppercase;
     color: #999;
 }
+
+.promotional strong {
+    font-size:130%;
+    color:black;
+}
+.promotional {
+    font-size:130%;
+    margin-top:10px;
+    text-align:center;
+    font-weight:600;
+    color:#444;
+}
+
 
 
 footer {
