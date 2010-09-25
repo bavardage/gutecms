@@ -2,20 +2,21 @@
 * TODO Add images
   
 * Finalise all text
-** TODO Add in information about joining
-
+** DONE Add in information about joining
+*** Check info about joining
+   
 * Mailing List
 ** Figure out how to do this
 ** Links!
-   
+    - links in the right boxes, on joining page, header link? just put info in joining page?
 
 * TODO Styling - tweaks
 ** DONE Spacing below blog entries
 ** DONE Spacing to left of header image
-** TODO Top links highlight colour
+** DONE Top links highlight colour
 ** TODO Add class=info styles to some bits of text?!
 ** TODO Fancy header image hover thingyies
-
-* Longer term stuff
-** Add premable to Termcard model, so can have 'most events on tuesday' - specific Termcard stuff
-** Archive :(
+   
+* TODO Longer term stuff
+** TODO Add premable to Termcard model, so can have 'most events on tuesday' - specific Termcard stuff
+** TODO Archive :(
