@@ -17,6 +17,8 @@
 ** TODO Add class=info styles to some bits of text?!
 ** TODO Fancy header image hover thingyies
    
+** TODO 404 PAGES!!!
+
 * TODO Longer term stuff
 ** TODO Add premable to Termcard model, so can have 'most events on tuesday' - specific Termcard stuff
 ** TODO Archive :(
