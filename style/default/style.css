@@ -142,13 +142,13 @@ p.tags {
     color:#444;
 }
 
-blockquote {
+blockquote.abstract {
     font-style: normal;
     color: black;
     text-align: justify;
 }
 
-blockquote .bio {
+blockquote.abstract .bio {
     font-family: 'Droid Sans', sans-serif;
     font-weight: bold;
 }
