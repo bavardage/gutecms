@@ -13,7 +13,7 @@
 /* setup */
  
 
-h1,h2,h3,h4,h5 { font-weight: normal; font-family: "Droid Sans";}
+h1,h2,h3,h4,h5 { font-weight: normal; font-family: "Droid Sans", sans-serif;}
 
 a { color: #3f8ed8; text-decoration: none;      }
 a:hover { color: black; text-decoration: underline; }
@@ -29,7 +29,7 @@ p + p {
 
 /* main page things */
 html {
-    font-family: 'Droid Serif';
+    font-family: 'Droid Serif', serif;
 }
 
 body {
@@ -76,7 +76,7 @@ body {
     margin-left: 5px;
 }
 #content>header nav ul { 
-    font-family: "Droid Sans";
+    font-family: "Droid Sans", sans-serif;
     float: left;
     background: url('./images/blackboard_slice.jpg') fixed;
 /*    background-color: #000;*/
@@ -112,7 +112,7 @@ body {
 
 #main {
     background-color: white;
-    font-family: "Droid Serif";
+    font-family: "Droid Serif", serif;
 }
 
 div.post {
@@ -124,7 +124,7 @@ div.post {
 }
 
 p.tags {
-    font-family: "Droid Sans", sans;
+    font-family: "Droid Sans", sans-serif;
     text-align: right;
     text-transform: uppercase;
     color: #999;
@@ -142,10 +142,19 @@ p.tags {
     color:#444;
 }
 
+blockquote {
+    font-style: normal;
+    color: black;
+    text-align: justify;
+}
 
+blockquote .bio {
+    font-family: 'Droid Sans', sans-serif;
+    font-weight: bold;
+}
 
 footer {
-    font-family: "Droid Sans";
+    font-family: "Droid Sans", sans-serif;
     background: url('./images/blackboard_slice.jpg') fixed;
     margin: 0;
     padding: 8px;
