@@ -423,6 +423,12 @@ class EditorConsole(EditRequestHandler):
     except:
       self.fail()
 
+class RedirectHandler(webapp.RequestHandler):
+  def get(self, *args):
+    self.redirect("http://www.invariants.org.uk", permanent=True)
+  
+  
+
 application = webapp.WSGIApplication([
                 ('/edit/roles/(.*)', RoleAssignmentEditor),
                 ('/edit/pages/(.*)', PageEditor),
@@ -433,6 +439,7 @@ application = webapp.WSGIApplication([
                 ('/edit/?', EditorConsole),
                 ('/termcard/(.*)/(.*)', TermcardRenderer),
                 ('/termcard/', TermcardRenderer),
+                ('/redirect/(.*)', RedirectHandler),
                 ('/', BlogFrontRenderer),
                 ('/(.*)', BlogEntryRenderer),
               ])
