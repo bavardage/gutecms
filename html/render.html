@@ -18,10 +18,13 @@
       <header>
 	<nav>
 	  <ul>
+	    {% block navlinks %}
 	    {% for link in navlinks %} 
 	    <li>
 	      <a href="{{ link.url }}" {% ifequal link.url path %}rel="tag"{% endifequal %} {{ link.attribs }}>{{ link.text }}</a>
+	    </li>
 	    {% endfor %}
+	    {% endblock %}
 	  </ul>
 	</nav>
 	<div class="alt">

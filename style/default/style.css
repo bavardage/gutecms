@@ -85,6 +85,14 @@ body {
     padding: 0; margin: 0;
 }
 #content>header nav li { float: left; }
+#content>header nav li.title {
+    float: left;
+    padding: 8px;
+    margin: 0;
+    margin-left: 1em;
+    font-size: 20px;
+    color: #ccc;
+}
 #content>header nav li a { 
     float: left;
     padding: 8px;
