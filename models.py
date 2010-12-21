@@ -45,3 +45,8 @@ class TermcardEntry(db.Model):
     title = db.StringProperty()
     abstract = db.TextProperty()
 
+class Picture(db.Model):
+    title = db.StringProperty(required=True)
+    picture = db.BlobProperty()
+    caption = db.StringProperty()
+    date = db.DateTimeProperty(auto_now_add=True)
