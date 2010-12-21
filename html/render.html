@@ -24,6 +24,9 @@
 	      <a href="{{ link.url }}" {% ifequal link.url path %}rel="tag"{% endifequal %} {{ link.attribs }}>{{ link.text }}</a>
 	    </li>
 	    {% endfor %}
+	    {% if admin %}
+	    <li><a href="/edit/">Admin</a></li>
+	    {% endif %}
 	    {% endblock %}
 	  </ul>
 	</nav>

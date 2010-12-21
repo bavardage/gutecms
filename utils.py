@@ -72,5 +72,6 @@ class EditRequestHandler(webapp.RequestHandler):
 
 def make_payload(payload):
   payload['user'] = users.get_current_user()
+  payload['admin'] = users.is_current_user_admin()
   payload['navlinks'] = NavLink.all().order('order')
   return payload
